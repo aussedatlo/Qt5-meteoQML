@@ -1,0 +1,6 @@
+*.o
+Makefile
+meteoQML.pro.user
+.qmake*
+mec*
+meteoQML
