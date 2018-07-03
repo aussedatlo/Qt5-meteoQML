@@ -2,9 +2,6 @@ TEMPLATE = app
 
 QT += qml quick widgets
 
-SOURCES += main.cpp \
-    testobject.cpp
-
 RESOURCES += qml/qml.qrc \
     ressources/src.qrc
 
@@ -15,4 +12,11 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 HEADERS += \
-    testobject.h
+    testobject.h \
+    meteomanager.h \
+    meteobeans.h
+
+SOURCES += main.cpp \
+    testobject.cpp \
+    meteomanager.cpp \
+    meteobeans.cpp

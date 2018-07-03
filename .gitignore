@@ -1,6 +1,6 @@
 *.o
 Makefile
-meteoQML.pro.user
+meteoQML.pro.user*
 .qmake*
 mec*
 meteoQML
