@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>SmallSection.qml</file>
         <file>BigSection.qml</file>
+        <file>Config.qml</file>
     </qresource>
 </RCC>

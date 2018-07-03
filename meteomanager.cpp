@@ -43,6 +43,8 @@ void MeteoManager::enregistrer()
             vector.at(i)->setIcon(map["list"].toList().at(i).toMap()["weather"].toList().at(0).toMap()["icon"].toString());
         }
         requestOver();
+        updateBigSection();
+        qDebug() << "OK";
     }
 }
 

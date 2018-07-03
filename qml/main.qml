@@ -8,6 +8,9 @@ ApplicationWindow {
     height: 240
     title: qsTr("Hello World")
 
+    property string max_big: "36"
+    property string min_big: "18"
+
     Rectangle {
         id: rect1
         width: aw.width/2
@@ -39,6 +42,24 @@ ApplicationWindow {
         }
     }
 
+
+    Config {id: config}
+
+    Text {
+        id: someTxt
+        text: config.msg0
+        anchors.centerIn: parent
+    }
+
+    Connections
+    {
+        id:cppConnection
+        target:meteoManager
+        ignoreUnknownSignals: true
+        onUpdateBigSection: {
+              config.msg0 = "blabla"
+       }
+    }
 
     /*
     // Some interaction elements

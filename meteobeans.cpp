@@ -1,17 +1,14 @@
 #include "meteobeans.h"
 
-MeteoBeans::MeteoBeans()
+MeteoBeans::MeteoBeans(QObject *parent) :
+    QObject(parent)
 {
-
 }
 
-MeteoBeans::MeteoBeans(int temp, int min, int max, QString icon)
+MeteoBeans::~MeteoBeans()
 {
-    this->temp = temp;
-    this->min = min;
-    this->max = max;
-    this->icon = icon;
 }
+
 
 double MeteoBeans::getTemp() const
 {

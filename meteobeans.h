@@ -1,13 +1,15 @@
 #ifndef METEOBEANS_H
 #define METEOBEANS_H
 
+#include <QObject>
 #include <QString>
 
-class MeteoBeans
+class MeteoBeans : public QObject
 {
+    Q_OBJECT
 public:
-    MeteoBeans();
-    MeteoBeans(int, int, int, QString);
+    MeteoBeans(QObject *parent = 0);
+    ~MeteoBeans();
 
     double getTemp() const;
     void setTemp(double value);

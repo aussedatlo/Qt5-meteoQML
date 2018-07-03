@@ -24,6 +24,7 @@ public slots:
 
 signals:
     void requestOver();
+    void updateBigSection();
 
 private:
     bool erreurTrouvee;

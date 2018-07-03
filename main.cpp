@@ -5,7 +5,6 @@
 
 #include "testobject.h"
 #include "meteomanager.h"
-#include "meteobeans.h"
 
 int main(int argc, char *argv[])
 {
@@ -18,13 +17,11 @@ int main(int argc, char *argv[])
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
     engine.rootContext()->setContextProperty("testObject",&to);
 
-
     // MeteoManager update
     MeteoManager* meteoManager = new MeteoManager();
-    //QObject::connect(meteoManager, SIGNAL(requestOver()), this, SLOT(update()));
     meteoManager->update();
 
-    qDebug() << meteoManager->getMeteoBeans(0)->getMax();
+    engine.rootContext()->setContextProperty("meteoManager",meteoManager);
 
     QTimer *timer = new QTimer();
     QObject::connect(timer, SIGNAL(timeout()), meteoManager, SLOT(updateData()));

@@ -2,14 +2,16 @@ import QtQuick 2.3
 import QtQuick.Controls 1.2
 
 Rectangle {
+    id: container
     anchors.fill: parent
 
     Rectangle {
+        id: rectange_image
         width: parent.width
         height: 2*parent.height/3
         anchors.top: parent.top
         Image {
-            id: root
+            id: image
             source: "/meteo/03d"
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
@@ -25,8 +27,8 @@ Rectangle {
 
 
         Text {
-            id: temp1
-            text: "20"
+            id: temp1_big
+            text: config.msg0
             font.family: "Helvetica"
             font.pointSize: 24
             color: "red"
@@ -34,7 +36,7 @@ Rectangle {
         }
 
         Text {
-            id: temp2
+            id: temp2_big
             text: "12"
             font.family: "Helvetica"
             font.pointSize: 24
