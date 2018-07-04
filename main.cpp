@@ -1,9 +1,8 @@
 #include <QApplication>
+#include "meteomanager.h"
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QDebug>
-
-#include "meteomanager.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,7 +11,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     // Load the QML and set the Context
-    engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/qml/Main.qml")));
 
     // MeteoManager update
     MeteoManager* meteoManager = new MeteoManager();
@@ -23,6 +22,5 @@ int main(int argc, char *argv[])
     QTimer *timer = new QTimer();
     QObject::connect(timer, SIGNAL(timeout()), meteoManager, SLOT(updateData()));
     timer->start(10000);
-
     return app.exec();
 }

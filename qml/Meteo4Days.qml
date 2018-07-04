@@ -1,12 +1,16 @@
 import QtQuick 2.3
 import QtQuick.Controls 1.2
 
-ApplicationWindow {
+Item {
     id: aw
     visible: true
     width: 320
     height: 240
-    title: qsTr("Hello World")
+
+    MouseArea {
+            anchors.fill: rect1
+            onClicked: {main.changeView("Meteo1Day.qml");}
+        }
 
     Rectangle {
         id: rect1

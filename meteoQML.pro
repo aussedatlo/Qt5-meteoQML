@@ -12,8 +12,8 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 HEADERS += \
-    meteomanager.h 
+    meteomanager.h
 
 SOURCES += main.cpp \
-    meteomanager.cpp 
+    meteomanager.cpp
 

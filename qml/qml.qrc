@@ -1,8 +1,10 @@
 <RCC>
     <qresource prefix="/qml">
-        <file>main.qml</file>
+        <file>Meteo4Days.qml</file>
         <file>SmallSection.qml</file>
         <file>BigSection.qml</file>
         <file>Config.qml</file>
+        <file>Meteo1Day.qml</file>
+        <file>Main.qml</file>
     </qresource>
 </RCC>
