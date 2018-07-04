@@ -2,10 +2,6 @@
 
 MeteoManager::MeteoManager()
 {
-    vector.append(new MeteoBeans());
-    vector.append(new MeteoBeans());
-    vector.append(new MeteoBeans());
-    vector.append(new MeteoBeans());
 }
 
 MeteoManager::~MeteoManager()
@@ -35,14 +31,12 @@ void MeteoManager::enregistrer()
         QJsonObject rootObject = itemDoc.object();
         QVariantMap map = rootObject.toVariantMap();
 
-        for (int i=0; i<1; i++)
-        {
-            vector.at(i)->setMax(int(map["list"].toList().at(i).toMap()["temp"].toMap()["max"].toDouble()));
-            vector.at(i)->setMin(int(map["list"].toList().at(i).toMap()["temp"].toMap()["min"].toDouble()));
-            vector.at(i)->setTemp(int(map["list"].toList().at(i).toMap()["temp"].toMap()["day"].toDouble()));
-            vector.at(i)->setIcon(map["list"].toList().at(i).toMap()["weather"].toList().at(0).toMap()["icon"].toString());
-        }
+        double max = int(map["list"].toList().at(0).toMap()["temp"].toMap()["max"].toDouble());
+        double min = int(map["list"].toList().at(0).toMap()["temp"].toMap()["min"].toDouble());
+        double temp =int(map["list"].toList().at(0).toMap()["temp"].toMap()["day"].toDouble());
+        QString icon = map["list"].toList().at(0).toMap()["weather"].toList().at(0).toMap()["icon"].toString();
 
+        updateBigSection(QString::number(max),QString::number(min),icon);
 
         for (int i=1; i<4; i++)
         {
@@ -53,11 +47,6 @@ void MeteoManager::enregistrer()
 
             updateSmallSection(i, QString::number(max), QString::number(min), icon);
         }
-        requestOver();
-
-        MeteoBeans* b = vector.at(0);
-        updateBigSection(QString::number(b->getMax()),QString::number(b->getMin()),b->getIcon());
-        qDebug() << "OK";
     }
 }
 
@@ -76,10 +65,6 @@ void MeteoManager::messageErreur(QNetworkReply::NetworkError)
     erreurTrouvee = true; //On indique qu'il y a eu une erreur au slot enregistrer
     QNetworkReply *r = qobject_cast<QNetworkReply*>(sender());
     qDebug() << r->errorString();
-}
-
-MeteoBeans* MeteoManager::getMeteoBeans(int i){
-    return vector.at(i);
 }
 
 void MeteoManager::updateData()

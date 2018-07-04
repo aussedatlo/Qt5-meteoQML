@@ -2,10 +2,12 @@ import QtQuick 2.4
 import QtQuick.Controls 1.2
 
 Rectangle {
-    border.width: 1
-    border.color: "red"
+
     height: parent.height/3
     width: parent.width
+    property string temp_min: ""
+    property string temp_max: ""
+    property string icon: ""
 
     TextMetrics {
         id: text_min
@@ -28,7 +30,7 @@ Rectangle {
 
         Image {
             id: root
-            source: "/meteo/01d"
+            source: "/meteo/" + icon
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.margins: 10
@@ -63,8 +65,5 @@ Rectangle {
                 color: "blue"
             }
         }
-
-
-
     }
 }

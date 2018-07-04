@@ -13,11 +13,9 @@ include(deployment.pri)
 
 HEADERS += \
     testobject.h \
-    meteomanager.h \
-    meteobeans.h
+    meteomanager.h 
 
 SOURCES += main.cpp \
     testobject.cpp \
-    meteomanager.cpp \
-    meteobeans.cpp
+    meteomanager.cpp 
 

@@ -8,9 +8,6 @@ ApplicationWindow {
     height: 240
     title: qsTr("Hello World")
 
-    property string max_big: "36"
-    property string min_big: "18"
-
     Rectangle {
         id: rect1
         width: aw.width/2
@@ -29,51 +26,43 @@ ApplicationWindow {
 
         SmallSection {
             id: smallSection1
-            property string temp_min: ""
-            property string temp_max: ""
         }
 
         SmallSection {
             id: smallSection2
             anchors.top: smallSection1.bottom
-            property string temp_min: ""
-            property string temp_max: ""
         }
 
         SmallSection {
             id: smallSection3
             anchors.top: smallSection2.bottom
-            property string temp_min: ""
-            property string temp_max: ""
         }
     }
 
-
-    Config {id: config}
-
     Connections
     {
-        id:cppConnection
         target:meteoManager
         ignoreUnknownSignals: true
         onUpdateBigSection: {
-            config.temp_max = temp_max
-            config.temp_min = temp_min
-            config.icon = icon
+            bigSection.temp_max = temp_max
+            bigSection.temp_min = temp_min
+            bigSection.icon = icon
        }
         onUpdateSmallSection: {
-            console.log("smallSection")
             if (index == 1) {
                 smallSection1.temp_min = temp_min
                 smallSection1.temp_max = temp_max
+                smallSection1.icon = icon
             }
             if (index == 2) {
                 smallSection2.temp_min = temp_min
                 smallSection2.temp_max = temp_max
+                smallSection2.icon = icon
             }
             if (index == 3) {
                 smallSection3.temp_min = temp_min
                 smallSection3.temp_max = temp_max
+                smallSection3.icon = icon
             }
        }
     }
