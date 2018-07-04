@@ -12,10 +12,8 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 HEADERS += \
-    testobject.h \
     meteomanager.h 
 
 SOURCES += main.cpp \
-    testobject.cpp \
     meteomanager.cpp 
 
