@@ -20,3 +20,4 @@ SOURCES += main.cpp \
     testobject.cpp \
     meteomanager.cpp \
     meteobeans.cpp
+

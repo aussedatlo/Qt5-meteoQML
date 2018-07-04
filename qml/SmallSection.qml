@@ -28,11 +28,11 @@ Rectangle {
 
         Image {
             id: root
-            source: "/meteo/03d"
+            source: "/meteo/01d"
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.margins: 10
-            scale:0.15
+            scale:0.12
         }
     }
 
@@ -48,18 +48,17 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
 
             Text {
-                id: temp_max
-                text: text_max.text
+                id: max
+                text: temp_max
                 font: text_max.font
                 anchors.horizontalCenter: parent.horizontalCenter
                 color: "red"
             }
 
             Text {
-                id: temp_min
-                text: text_min.text
+                text: temp_min
                 font: text_min.font
-                anchors.top: temp_max.bottom
+                anchors.top: max.bottom
                 anchors.horizontalCenter: parent.horizontalCenter
                 color: "blue"
             }

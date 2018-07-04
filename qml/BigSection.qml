@@ -12,7 +12,7 @@ Rectangle {
         anchors.top: parent.top
         Image {
             id: image
-            source: "/meteo/03d"
+            source: "/meteo/" + config.icon
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.margins: 10
@@ -28,7 +28,7 @@ Rectangle {
 
         Text {
             id: temp1_big
-            text: config.msg0
+            text: config.temp_max
             font.family: "Helvetica"
             font.pointSize: 24
             color: "red"
@@ -37,13 +37,13 @@ Rectangle {
 
         Text {
             id: temp2_big
-            text: "12"
+            text: config.temp_min
             font.family: "Helvetica"
             font.pointSize: 24
             color: "blue"
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
-            anchors.top: temp1.bottom
+            anchors.top: temp1_big.bottom
         }
     }
 }

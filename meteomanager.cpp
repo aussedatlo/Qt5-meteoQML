@@ -35,15 +35,28 @@ void MeteoManager::enregistrer()
         QJsonObject rootObject = itemDoc.object();
         QVariantMap map = rootObject.toVariantMap();
 
-        for (int i=0; i<4; i++)
+        for (int i=0; i<1; i++)
         {
             vector.at(i)->setMax(int(map["list"].toList().at(i).toMap()["temp"].toMap()["max"].toDouble()));
             vector.at(i)->setMin(int(map["list"].toList().at(i).toMap()["temp"].toMap()["min"].toDouble()));
             vector.at(i)->setTemp(int(map["list"].toList().at(i).toMap()["temp"].toMap()["day"].toDouble()));
             vector.at(i)->setIcon(map["list"].toList().at(i).toMap()["weather"].toList().at(0).toMap()["icon"].toString());
         }
+
+
+        for (int i=1; i<4; i++)
+        {
+            double max = int(map["list"].toList().at(i).toMap()["temp"].toMap()["max"].toDouble());
+            double min = int(map["list"].toList().at(i).toMap()["temp"].toMap()["min"].toDouble());
+            double temp =int(map["list"].toList().at(i).toMap()["temp"].toMap()["day"].toDouble());
+            QString icon = map["list"].toList().at(i).toMap()["weather"].toList().at(0).toMap()["icon"].toString();
+
+            updateSmallSection(i, QString::number(max), QString::number(min), icon);
+        }
         requestOver();
-        updateBigSection();
+
+        MeteoBeans* b = vector.at(0);
+        updateBigSection(QString::number(b->getMax()),QString::number(b->getMin()),b->getIcon());
         qDebug() << "OK";
     }
 }

@@ -29,27 +29,27 @@ ApplicationWindow {
 
         SmallSection {
             id: smallSection1
+            property string temp_min: ""
+            property string temp_max: ""
         }
 
         SmallSection {
             id: smallSection2
             anchors.top: smallSection1.bottom
+            property string temp_min: ""
+            property string temp_max: ""
         }
 
         SmallSection {
             id: smallSection3
             anchors.top: smallSection2.bottom
+            property string temp_min: ""
+            property string temp_max: ""
         }
     }
 
 
     Config {id: config}
-
-    Text {
-        id: someTxt
-        text: config.msg0
-        anchors.centerIn: parent
-    }
 
     Connections
     {
@@ -57,37 +57,24 @@ ApplicationWindow {
         target:meteoManager
         ignoreUnknownSignals: true
         onUpdateBigSection: {
-              config.msg0 = "blabla"
+            config.temp_max = temp_max
+            config.temp_min = temp_min
+            config.icon = icon
+       }
+        onUpdateSmallSection: {
+            console.log("smallSection")
+            if (index == 1) {
+                smallSection1.temp_min = temp_min
+                smallSection1.temp_max = temp_max
+            }
+            if (index == 2) {
+                smallSection2.temp_min = temp_min
+                smallSection2.temp_max = temp_max
+            }
+            if (index == 3) {
+                smallSection3.temp_min = temp_min
+                smallSection3.temp_max = temp_max
+            }
        }
     }
-
-    /*
-    // Some interaction elements
-    Text {
-        id: someTxt
-        text: qsTr("Hello World")
-        anchors.centerIn: parent
-    }
-    Button {
-        id: someBtn
-        text: qsTr("someButton")
-        anchors.centerIn: parent
-        anchors.verticalCenterOffset: -40
-        onClicked: {
-            // Default button signal
-            testObject.someSlot("fn-call")
-        }
-    }
-
-    // Create connections with c++
-    Connections             // Define actions for custom slots
-    {
-        id:cppConnection
-        target:testObject
-        ignoreUnknownSignals: true
-        onSomeSignal: {
-              // To access signal parameter, name the parameter
-              someTxt.text = text
-       }
-    }*/
 }

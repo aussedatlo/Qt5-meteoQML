@@ -24,7 +24,8 @@ public slots:
 
 signals:
     void requestOver();
-    void updateBigSection();
+    void updateBigSection(const QString &temp_max, const QString &temp_min, const QString &icon);
+    void updateSmallSection(const int &index, const QString &temp_max, const QString &temp_min, const QString &icon);
 
 private:
     bool erreurTrouvee;
