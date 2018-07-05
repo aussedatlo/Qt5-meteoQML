@@ -9,14 +9,14 @@ Rectangle {
     property string temp_min: "15"
     property string temp_max: "25"
     property string icon: "09d"
-    property string graph1: "10"
-    property string graph2: "15"
+    property string graph1: "8"
+    property string graph2: "10"
     property string graph3: "17"
     property string graph4: "22"
-    property string graph5: "16"
-    property string graph6: "12"
-    property string graph7: "10"
-    property string decalage: "100"
+    property string graph5: "28"
+    property string graph6: "24"
+    property string graph7: "16"
+    property string decalage: "130"
 
 
     MouseArea {
@@ -55,7 +55,7 @@ Rectangle {
 
             Path {
                 id: myPath
-                startX: 0; startY: 80-graph1
+                startX: 0; startY: decalage-graph1
                 PathCurve { x: parent.width/6; y: decalage-graph2 }
                 PathCurve { x: 2*parent.width/6; y: decalage-graph3 }
                 PathCurve { x: 3*parent.width/6; y: decalage-graph4 }
@@ -67,7 +67,7 @@ Rectangle {
             onPaint: {
                 context.strokeStyle = Qt.rgba(0,0,255);
                 context.path = myPath;
-                context.lineWidth = 5;
+                context.lineWidth = 80;
                 context.stroke();
             }
         }

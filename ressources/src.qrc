@@ -1,12 +1,20 @@
 <RCC>
     <qresource prefix="/meteo">
-        <file alias="03d">clouds.png</file>
-        <file alias="04d">clouds.png</file>
-        <file alias="09d">heavy-rain.png</file>
-        <file alias="10d">rain.png</file>
-        <file alias="13d">snow.png</file>
-        <file alias="11d">thunderstorm.png</file>
-        <file alias="01d">warm.png</file>
-        <file alias="02d">warm-clouds.png</file>
+    <file alias="01d">warm.png</file>
+    <file alias="02d">warm-clouds.png</file>
+    <file alias="03d">clouds.png</file>
+    <file alias="04d">clouds.png</file>
+    <file alias="09d">heavy-rain.png</file>
+    <file alias="10d">rain.png</file>
+    <file alias="13d">snow.png</file>
+    <file alias="11d">thunderstorm.png</file>
+    <file alias="01n">warm.png</file>
+    <file alias="02n">warm-clouds.png</file>
+    <file alias="03n">clouds.png</file>
+    <file alias="04n">clouds.png</file>
+    <file alias="09n">heavy-rain.png</file>
+    <file alias="10n">rain.png</file>
+    <file alias="13n">snow.png</file>
+    <file alias="11n">thunderstorm.png</file>
     </qresource>
 </RCC>
