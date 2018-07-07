@@ -1,10 +1,19 @@
 <RCC>
-    <qresource prefix="/qml">
-        <file>Meteo4Days.qml</file>
-        <file>SmallSection.qml</file>
-        <file>BigSection.qml</file>
-        <file>Config.qml</file>
-        <file>Meteo1Day.qml</file>
-        <file>Main.qml</file>
-    </qresource>
+<qresource>
+    <file>Config.qml</file>
+    <file>Main.qml</file>
+</qresource>
+<qresource>
+    <file>meteo4Days/SmallSection.qml</file>
+    <file>meteo4Days/BigSection.qml</file>
+    <file>meteo4Days/Meteo4Days.qml</file>
+</qresource>
+<qresource>
+    <file>meteo1Day/Meteo1Day.qml</file>
+</qresource>
+<qresource>
+    <file>test/TestScreen.qml</file>
+</qresource>
+
+
 </RCC>

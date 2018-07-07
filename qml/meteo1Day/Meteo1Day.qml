@@ -6,22 +6,10 @@ Rectangle {
     width: 320
     height: 240
     property string temp: "15"
-    property string icon: "01d"
+    property string icon: "03d"
     property string humid: "32"
     property string wind: "15"
     property string rain: "8"
-    /* Values normalisées entre -20 et 30 */
-    property string graph1: "20"
-    property string graph2: "15"
-    property string graph3: "-6"
-    property string graph4: "12"
-    property string graph5: "20"
-    property string graph6: "28"
-    property string graph7: "22"
-    /* Décalage pour la courbe */
-
-
-
 
     MouseArea {
             anchors.fill: parent
@@ -31,7 +19,7 @@ Rectangle {
     Rectangle {
         id: rectangle_info
         width: parent.width/2
-        height: parent.height/2
+        height: parent.height/2 - 10
 
         Column {
             spacing:2
@@ -39,7 +27,7 @@ Rectangle {
             anchors.horizontalCenter: parent.horizontalCenter
             Text {
                 text: "29°C"
-                font.pointSize: 30
+                font.pointSize: 28
             }
             Text {
                 text: "Humidité: " + humid + "%"
@@ -60,7 +48,7 @@ Rectangle {
     Item {
         id: rectangle_image
         width: parent.width/2
-        height: parent.height/2
+        height: parent.height/2 - 10
         anchors.left: rectangle_info.right
 
         Image {
@@ -77,30 +65,27 @@ Rectangle {
     Rectangle {
         id: canevas
         width: parent.width
-        height: parent.height/2-20
+        height: parent.height/2-10
         anchors.top: rectangle_image.bottom
         Canvas {
+            id: c
             anchors.fill:parent
             contextType: "2d"
+            anchors.margins: 5
+
+            Component {
+                id: comp
+                PathCurve { }
+            }
+
+            property var paths : [
+                //comp.createObject(c, {"x": 75, "y": 75} )
+            ]
 
             Path {
                 id: myPath
-                startX: -70; startY: 100
-
-                /* start fill */
-                PathCurve { x: -50; y: 30-graph1 }
-
-                /* Values */
-                PathCurve { x: parent.width/6; y: 30-graph2 }
-                PathCurve { x: 2*parent.width/6; y: 30-graph3 }
-                PathCurve { x: 3*parent.width/6; y: 30-graph4 }
-                PathCurve { x: 4*parent.width/6; y: 30-graph5 }
-                PathCurve { x: 5*parent.width/6; y: 30-graph6 }
-                PathCurve { x: parent.width; y: 30-graph7 }
-
-                /* end fill */
-                PathCurve { x: parent.width+50; y: 30-graph7 }
-                PathCurve { x: parent.width+70; y: 100 }
+                startX: -50; startY: 100
+                pathElements: paths
             }
 
             onPaint: {
@@ -111,6 +96,64 @@ Rectangle {
                 context.lineWidth = 3;
                 context.fill();
                 context.stroke();
+            }
+
+            Component.onCompleted: {
+                /* element a gauche */
+                paths.push(comp.createObject(c, {"x": -20, "y": Math.floor(Math.random()*30) + 50} ))
+
+                /* Diffs values */
+                var i
+                for (i=0; i<8; i++)
+                    paths.push(comp.createObject(c, {"x": i*50, "y": Math.floor(Math.random()*30) + 50} ))
+
+                /* element a droite */
+                paths.push(comp.createObject(c, {"x": 360, "y": Math.floor(Math.random()*30) + 50} ))
+                paths.push(comp.createObject(c, {"x": 400, "y": 100} ))
+
+                //paths[3] = comp.createObject(c, {"x": 150, "y": 80} )
+                myPath.pathElements = paths
+            }
+        }
+
+        Row {
+            id: row_icons
+            width: parent.width
+            height: parent.height/3
+            Repeater {
+                id: repeater_icons
+                model:5
+                Item {
+                    width: parent.width/5
+                    height: parent.height
+                    Image {
+                        source: "/meteo/" + "02d"
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        scale:0.05
+                    }
+                }
+            }
+        }
+
+        Row {
+            width: parent.width
+            height: parent.height/3
+            anchors.top: row_icons.bottom
+            Repeater {
+                id: repeater_temp
+                model:5
+                Item {
+                    width: parent.width/5
+                    height: parent.height
+                    property int r_temp: 12
+                    Text {
+                        font.pointSize: 10
+                        text: r_temp + "°C"
+                        color: "black"
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
+                }
             }
         }
     }

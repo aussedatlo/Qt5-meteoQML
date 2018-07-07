@@ -1,5 +1,8 @@
 import QtQuick 2.7
 import QtQuick.Controls 1.2
+import "meteo1Day"
+import "meteo4Days"
+import "test"
 
 ApplicationWindow {
     id:main
@@ -7,7 +10,7 @@ ApplicationWindow {
     width: 320
     height: 240
 
-  Meteo4Days{
+  Meteo1Day{
       id: meteo4days
   }
 
@@ -17,4 +20,5 @@ ApplicationWindow {
       console.log("index "+value)
       pageLoader.source = value
   }
+
 }

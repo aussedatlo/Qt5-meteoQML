@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     // Load the QML and set the Context
-    engine.load(QUrl(QStringLiteral("qrc:/qml/Main.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/Main.qml")));
 
     // MeteoManager update
     MeteoManager* meteoManager = new MeteoManager();

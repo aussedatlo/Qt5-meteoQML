@@ -9,7 +9,7 @@ Item {
 
     MouseArea {
             anchors.fill: rect1
-            onClicked: {main.changeView("Meteo1Day.qml");}
+            onClicked: {main.changeView("../meteo1Day/Meteo1Day.qml");}
         }
 
     Rectangle {
