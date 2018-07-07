@@ -54,7 +54,7 @@ Rectangle {
                 text: temp_max
                 font: text_max.font
                 anchors.horizontalCenter: parent.horizontalCenter
-                color: "red"
+                color: "#e5787f"
             }
 
             Text {
@@ -62,7 +62,7 @@ Rectangle {
                 font: text_min.font
                 anchors.top: max.bottom
                 anchors.horizontalCenter: parent.horizontalCenter
-                color: "blue"
+                color: "#5ea1c2"
             }
         }
     }

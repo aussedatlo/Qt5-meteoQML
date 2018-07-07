@@ -31,7 +31,7 @@ Rectangle {
             text: temp_max
             font.family: "Helvetica"
             font.pointSize: 24
-            color: "red"
+            color: "#e5787f"
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
@@ -40,7 +40,7 @@ Rectangle {
             text: temp_min
             font.family: "Helvetica"
             font.pointSize: 24
-            color: "blue"
+            color: "#5aa87f"
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
             anchors.top: temp1_big.bottom
