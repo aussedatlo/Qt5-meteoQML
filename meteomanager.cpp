@@ -9,10 +9,17 @@ MeteoManager::~MeteoManager()
 }
 
 
-void MeteoManager::update()
+void MeteoManager::update(Fenetre type)
 {
+    typeRequest = type;
+    QUrl url;
+    if (type == Fenetre::meteo4Days) {
+        url = QUrl(url_4days_sartrouville);
+    } else {
+        url = QUrl(url_today_sartrouville);
+    }
+
     erreurTrouvee = false;
-    QUrl url = QUrl(url_4days_sartrouville);
     QNetworkRequest requete(url);
     manager = new QNetworkAccessManager;
     reply = manager->get(requete);
@@ -31,21 +38,10 @@ void MeteoManager::enregistrer()
         QJsonObject rootObject = itemDoc.object();
         QVariantMap map = rootObject.toVariantMap();
 
-        double max = int(map["list"].toList().at(0).toMap()["temp"].toMap()["max"].toDouble());
-        double min = int(map["list"].toList().at(0).toMap()["temp"].toMap()["min"].toDouble());
-        double temp =int(map["list"].toList().at(0).toMap()["temp"].toMap()["day"].toDouble());
-        QString icon = map["list"].toList().at(0).toMap()["weather"].toList().at(0).toMap()["icon"].toString();
-
-        updateBigSection(QString::number(max),QString::number(min),icon);
-
-        for (int i=1; i<4; i++)
-        {
-            double max = int(map["list"].toList().at(i).toMap()["temp"].toMap()["max"].toDouble());
-            double min = int(map["list"].toList().at(i).toMap()["temp"].toMap()["min"].toDouble());
-            double temp =int(map["list"].toList().at(i).toMap()["temp"].toMap()["day"].toDouble());
-            QString icon = map["list"].toList().at(i).toMap()["weather"].toList().at(0).toMap()["icon"].toString();
-
-            updateSmallSection(i, QString::number(max), QString::number(min), icon);
+        if (typeRequest == Fenetre::meteo4Days) {
+            map4Days(map);
+        } else {
+            qDebug() << "TODO";
         }
     }
 }
@@ -69,7 +65,25 @@ void MeteoManager::messageErreur(QNetworkReply::NetworkError)
 
 void MeteoManager::updateData()
 {
-    this->update();
+    this->update(typeRequest);
 }
 
+
+void MeteoManager::map4Days(QVariantMap map) {
+
+    double max = int(map["list"].toList().at(0).toMap()["temp"].toMap()["max"].toDouble());
+    double min = int(map["list"].toList().at(0).toMap()["temp"].toMap()["min"].toDouble());
+    QString icon = map["list"].toList().at(0).toMap()["weather"].toList().at(0).toMap()["icon"].toString();
+
+    updateBigSection(QString::number(max),QString::number(min),icon);
+
+    for (int i=1; i<4; i++)
+    {
+        double max = int(map["list"].toList().at(i).toMap()["temp"].toMap()["max"].toDouble());
+        double min = int(map["list"].toList().at(i).toMap()["temp"].toMap()["min"].toDouble());
+        QString icon = map["list"].toList().at(i).toMap()["weather"].toList().at(0).toMap()["icon"].toString();
+
+        updateSmallSection(i, QString::number(max), QString::number(min), icon);
+    }
+}
 

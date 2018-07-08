@@ -10,7 +10,7 @@ ApplicationWindow {
     width: 320
     height: 240
 
-  Meteo1Day{
+  Meteo4Days{
       id: meteo4days
   }
 

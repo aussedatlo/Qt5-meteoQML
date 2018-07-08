@@ -6,7 +6,7 @@ Rectangle {
     width: 320
     height: 240
     property string temp: "15"
-    property string icon: "03d"
+    property string icon: "02d"
     property string humid: "32"
     property string wind: "15"
     property string rain: "8"

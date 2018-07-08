@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 
     // MeteoManager update
     MeteoManager* meteoManager = new MeteoManager();
-    meteoManager->update();
+    meteoManager->update(MeteoManager::Fenetre::meteo4Days);
 
     engine.rootContext()->setContextProperty("meteoManager",meteoManager);
 
