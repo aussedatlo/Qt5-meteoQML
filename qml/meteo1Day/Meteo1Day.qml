@@ -13,7 +13,11 @@ Rectangle {
 
     MouseArea {
             anchors.fill: parent
-            onClicked: {main.changeView("retour Meteo4Days.qml");}
+            onClicked: {
+                meteoManager.updateTarget(1);
+                main.changeView("../meteo4Days/Meteo4Days.qml");
+                meteoManager.updateData();
+            }
         }
 
     Rectangle {

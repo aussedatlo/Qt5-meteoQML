@@ -41,7 +41,7 @@ void MeteoManager::enregistrer()
         if (typeRequest == Fenetre::meteo4Days) {
             map4Days(map);
         } else {
-            qDebug() << "TODO";
+            map1Day(map);
         }
     }
 }
@@ -68,6 +68,17 @@ void MeteoManager::updateData()
     this->update(typeRequest);
 }
 
+void MeteoManager::updateTarget(int target)
+{
+    //qDebug() << "updateTarget";
+    if (target == 1){
+        typeRequest=Fenetre::meteo4Days;
+    }
+    if (target == 2) {
+        typeRequest=Fenetre::meteo1Day;
+    }
+}
+
 
 void MeteoManager::map4Days(QVariantMap map) {
 
@@ -85,5 +96,19 @@ void MeteoManager::map4Days(QVariantMap map) {
 
         updateSmallSection(i, QString::number(max), QString::number(min), icon);
     }
+}
+
+
+
+void MeteoManager::map1Day(QVariantMap map) {
+
+    double timestamp = map["list"].toList().at(0).toMap()["dt"].toDouble();
+    QString date = map["list"].toList().at(0).toMap()["dt_txt"].toString();
+    int temp = map["list"].toList().at(0).toMap()["main"].toMap()["temp"].toDouble();
+    int humidity = map["list"].toList().at(0).toMap()["main"].toMap()["humidity"].toDouble();
+    int wind = map["list"].toList().at(0).toMap()["wind"].toMap()["speed"].toDouble();
+    QString icon = map["list"].toList().at(0).toMap()["weather"].toList().at(0).toMap()["icon"].toString();
+    qDebug() << map["list"].toList().at(0).toMap()["weather"].toList().at(0).toMap()["icon"].toString();
+
 }
 

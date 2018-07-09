@@ -9,7 +9,11 @@ Item {
 
     MouseArea {
             anchors.fill: rect1
-            onClicked: {main.changeView("../meteo1Day/Meteo1Day.qml");}
+            onClicked: {
+                meteoManager.updateTarget(2);
+                main.changeView("../meteo1Day/Meteo1Day.qml");
+                meteoManager.updateData();
+            }
         }
 
     Rectangle {

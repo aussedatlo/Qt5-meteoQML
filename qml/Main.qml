@@ -9,9 +9,13 @@ ApplicationWindow {
     visible: true
     width: 320
     height: 240
-
+/*
   Meteo4Days{
       id: meteo4days
+  }
+*/
+  Meteo1Day{
+      id: meteo1day
   }
 
   Loader { id: pageLoader }
