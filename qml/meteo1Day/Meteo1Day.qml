@@ -162,7 +162,7 @@ Rectangle {
                         source: "/meteo/" + r_icon
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.horizontalCenter: parent.horizontalCenter
-                        scale:0.05
+                        scale:0.06
                     }
                 }
             }

@@ -115,7 +115,7 @@ void MeteoManager::map1Day(QVariantMap map) {
 
     for (int i=1; i<6; i++){
         int temp = map["list"].toList().at(i).toMap()["main"].toMap()["temp"].toDouble();
-        QString icon = map["list"].toList().at(0).toMap()["weather"].toList().at(0).toMap()["icon"].toString();
+        QString icon = map["list"].toList().at(i).toMap()["weather"].toList().at(0).toMap()["icon"].toString();
         updateMeteo1Day_hours(QString::number(i), QString::number(temp), icon);
     }
 
