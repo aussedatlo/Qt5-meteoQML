@@ -29,6 +29,8 @@ signals:
     void updateBigSection(const QString &temp_max, const QString &temp_min, const QString &icon);
     void updateSmallSection(const int &index, const QString &temp_max, const QString &temp_min, const QString &icon);
 
+    void updateMeteo1Day(const QString &p_temp, const QString &p_icon, const QString &p_precip, const QString &p_wind, const QString &p_humid);
+
 private:
     bool erreurTrouvee;
     const QString url_4days_sartrouville = "http://api.openweathermap.org/data/2.5/forecast/daily?id=2975921&APPID=48d746904b47cc2c1d5696d1f7dcaa9c&units=metric&cnt=4";

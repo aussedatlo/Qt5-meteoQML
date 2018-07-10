@@ -102,13 +102,22 @@ void MeteoManager::map4Days(QVariantMap map) {
 
 void MeteoManager::map1Day(QVariantMap map) {
 
-    double timestamp = map["list"].toList().at(0).toMap()["dt"].toDouble();
-    QString date = map["list"].toList().at(0).toMap()["dt_txt"].toString();
+    //double timestamp = map["list"].toList().at(0).toMap()["dt"].toDouble();
+    //QString date = map["list"].toList().at(0).toMap()["dt_txt"].toString();
+
+    /* Update Information now */
     int temp = map["list"].toList().at(0).toMap()["main"].toMap()["temp"].toDouble();
     int humidity = map["list"].toList().at(0).toMap()["main"].toMap()["humidity"].toDouble();
     int wind = map["list"].toList().at(0).toMap()["wind"].toMap()["speed"].toDouble();
     QString icon = map["list"].toList().at(0).toMap()["weather"].toList().at(0).toMap()["icon"].toString();
-    qDebug() << map["list"].toList().at(0).toMap()["weather"].toList().at(0).toMap()["icon"].toString();
+    double precipitations = map["list"].toList().at(0).toMap()["rain"].toMap()["3h"].toDouble();
+    qDebug() << map["list"].toList().at(0).toMap()["rain"].toMap()["3h"].toDouble();
+
+    updateMeteo1Day(QString::number(temp), icon, QString::number(precipitations), QString::number(wind), QString::number(humidity));
+
+    /* Update 3h informations */
+
+    /* TODO */
 
 }
 

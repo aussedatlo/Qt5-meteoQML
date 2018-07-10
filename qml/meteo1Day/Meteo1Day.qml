@@ -5,11 +5,25 @@ Rectangle {
     visible: true
     width: 320
     height: 240
-    property string temp: "15"
-    property string icon: "02d"
-    property string humid: "32"
-    property string wind: "15"
-    property string rain: "8"
+    property string temp: ""
+    property string icon: ""
+    property string humid: ""
+    property string wind: ""
+    property string precip: ""
+
+    Connections
+    {
+        target:meteoManager
+        ignoreUnknownSignals: true
+        onUpdateMeteo1Day: {
+            temp = p_temp
+            icon = p_icon
+            precip = p_precip
+            wind = p_wind
+            humid = p_humid
+
+       }
+    }
 
     MouseArea {
             anchors.fill: parent
@@ -30,19 +44,19 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
             Text {
-                text: "29°C"
+                text: temp + "°C"
                 font.pointSize: 28
+            }
+            Text {
+                text: "Vent: " + wind + " km/h"
+                color: "grey"
             }
             Text {
                 text: "Humidité: " + humid + "%"
                 color: "grey"
             }
             Text {
-                text: "Précipitations: " + rain + "%"
-                color: "grey"
-            }
-            Text {
-                text: "Vent: " + wind + " km/h"
+                text: "Précipitations: " + precip
                 color: "grey"
             }
         }
@@ -188,5 +202,4 @@ Rectangle {
             }
         }
     }
-
 }
