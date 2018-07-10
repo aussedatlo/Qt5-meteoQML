@@ -51,7 +51,7 @@ void MeteoManager::progressionTelechargement(qint64 bytesReceived, qint64 bytesT
 {
     if (bytesTotal != -1)
     {
-        qDebug() << "Download: " << bytesReceived << "/" << bytesTotal ;
+        //qDebug() << "Download: " << bytesReceived << "/" << bytesTotal ;
     }
 }
 
@@ -102,22 +102,22 @@ void MeteoManager::map4Days(QVariantMap map) {
 
 void MeteoManager::map1Day(QVariantMap map) {
 
-    //double timestamp = map["list"].toList().at(0).toMap()["dt"].toDouble();
-    //QString date = map["list"].toList().at(0).toMap()["dt_txt"].toString();
-
     /* Update Information now */
+    QString date = map["list"].toList().at(0).toMap()["dt_txt"].toString();
+    QStringRef hour(&date, 11, 2);
     int temp = map["list"].toList().at(0).toMap()["main"].toMap()["temp"].toDouble();
     int humidity = map["list"].toList().at(0).toMap()["main"].toMap()["humidity"].toDouble();
     int wind = map["list"].toList().at(0).toMap()["wind"].toMap()["speed"].toDouble();
     QString icon = map["list"].toList().at(0).toMap()["weather"].toList().at(0).toMap()["icon"].toString();
     double precipitations = map["list"].toList().at(0).toMap()["rain"].toMap()["3h"].toDouble();
-    qDebug() << map["list"].toList().at(0).toMap()["rain"].toMap()["3h"].toDouble();
 
-    updateMeteo1Day(QString::number(temp), icon, QString::number(precipitations), QString::number(wind), QString::number(humidity));
+    updateMeteo1Day(QString::number(temp), icon, QString::number(precipitations), QString::number(wind), QString::number(humidity), hour.toString());
 
-    /* Update 3h informations */
-
-    /* TODO */
+    for (int i=1; i<6; i++){
+        int temp = map["list"].toList().at(i).toMap()["main"].toMap()["temp"].toDouble();
+        QString icon = map["list"].toList().at(0).toMap()["weather"].toList().at(0).toMap()["icon"].toString();
+        updateMeteo1Day_hours(QString::number(i), QString::number(temp), icon);
+    }
 
 }
 

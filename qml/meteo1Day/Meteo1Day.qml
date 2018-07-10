@@ -2,6 +2,7 @@ import QtQuick 2.3
 import QtQuick.Controls 1.2
 
 Rectangle {
+    id: meteo1Day
     visible: true
     width: 320
     height: 240
@@ -10,6 +11,24 @@ Rectangle {
     property string humid: ""
     property string wind: ""
     property string precip: ""
+    property string hour: ""
+
+
+    Component {
+        id: comp
+        PathCurve { }
+    }
+
+    property var paths : [
+        comp.createObject(c, {"x": -100, "y": 110} ),
+        comp.createObject(c, {"x": 0, "y": 110} ),
+        comp.createObject(c, {"x": 50, "y": 110} ),
+        comp.createObject(c, {"x": 100, "y": 110} ),
+        comp.createObject(c, {"x": 150, "y": 110} ),
+        comp.createObject(c, {"x": 200, "y": 110} ),
+        comp.createObject(c, {"x": 470, "y": 110} ),
+        comp.createObject(c, {"x": 470, "y": 110} )
+    ]
 
     Connections
     {
@@ -21,7 +40,22 @@ Rectangle {
             precip = p_precip
             wind = p_wind
             humid = p_humid
-
+            hour = p_hour
+       }
+       onUpdateMeteo1Day_hours: {
+           repeater_icons.itemAt(p_index-1).r_icon = p_icon;
+           repeater_temp.itemAt(p_index-1).r_temp = p_temp;
+           paths[p_index] = comp.createObject(c, {"x": 70*(p_index)-35, "y": 90-p_temp} );
+           /* first element */
+           if (p_index == 1) {
+               paths[0] = comp.createObject(c, {"x": -35, "y": 90-p_temp} );
+           }
+           /* Last element*/
+           if (p_index == 5) {
+               paths[6] = comp.createObject(c, {"x": 70*6-35, "y": 90-p_temp} );
+               myPath.pathElements = paths;
+               c.requestPaint();
+           }
        }
     }
 
@@ -91,15 +125,6 @@ Rectangle {
             contextType: "2d"
             anchors.margins: 5
 
-            Component {
-                id: comp
-                PathCurve { }
-            }
-
-            property var paths : [
-                //comp.createObject(c, {"x": 75, "y": 75} )
-            ]
-
             Path {
                 id: myPath
                 startX: -50; startY: 100
@@ -107,6 +132,7 @@ Rectangle {
             }
 
             onPaint: {
+                context.clearRect(0, 0, c.width, c.height);
                 context.strokeStyle = "#ffcc00";
                 context.fillStyle = "#FFCC80"
                 context.globalAlpha = 0.8;
@@ -117,19 +143,6 @@ Rectangle {
             }
 
             Component.onCompleted: {
-                /* element a gauche */
-                paths.push(comp.createObject(c, {"x": -20, "y": Math.floor(Math.random()*30) + 50} ))
-
-                /* Diffs values */
-                var i
-                for (i=0; i<8; i++)
-                    paths.push(comp.createObject(c, {"x": i*50, "y": Math.floor(Math.random()*30) + 50} ))
-
-                /* element a droite */
-                paths.push(comp.createObject(c, {"x": 360, "y": Math.floor(Math.random()*30) + 50} ))
-                paths.push(comp.createObject(c, {"x": 400, "y": 100} ))
-
-                //paths[3] = comp.createObject(c, {"x": 150, "y": 80} )
                 myPath.pathElements = paths
             }
         }
@@ -144,8 +157,9 @@ Rectangle {
                 Item {
                     width: parent.width/5
                     height: parent.height
+                    property string r_icon: "02d"
                     Image {
-                        source: "/meteo/" + "02d"
+                        source: "/meteo/" + r_icon
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.horizontalCenter: parent.horizontalCenter
                         scale:0.05
@@ -191,10 +205,10 @@ Rectangle {
                 Item {
                     width: parent.width/5
                     height: parent.height
-                    property int hour: 12
+                    property int hour: meteo1Day.hour
                     // repeater_hours.itemAt(index).hour = newValue
                     Text {
-                        text: (hour+index*3) % 24 + "h"
+                        text: (hour+(index+1)*3) % 24 + "h"
                         color: "grey"
                         anchors.horizontalCenter: parent.horizontalCenter
                     }

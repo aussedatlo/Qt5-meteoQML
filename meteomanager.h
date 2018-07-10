@@ -29,7 +29,8 @@ signals:
     void updateBigSection(const QString &temp_max, const QString &temp_min, const QString &icon);
     void updateSmallSection(const int &index, const QString &temp_max, const QString &temp_min, const QString &icon);
 
-    void updateMeteo1Day(const QString &p_temp, const QString &p_icon, const QString &p_precip, const QString &p_wind, const QString &p_humid);
+    void updateMeteo1Day(const QString &p_temp, const QString &p_icon, const QString &p_precip, const QString &p_wind, const QString &p_humid, const QString &p_hour);
+    void updateMeteo1Day_hours(const QString &p_index, const QString &p_temp, const QString &p_icon);
 
 private:
     bool erreurTrouvee;
