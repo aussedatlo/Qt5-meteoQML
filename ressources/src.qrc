@@ -4,8 +4,8 @@
         <file alias="meteo/02d">meteo/warm-clouds.png</file>
         <file alias="meteo/03d">meteo/clouds.png</file>
         <file alias="meteo/04d">meteo/clouds.png</file>
-        <file alias="meteo/09d">meteo/heavy-rain.png</file>
-        <file alias="meteo/10d">meteo/rain.png</file>
+        <file alias="meteo/09d">meteo/rain.png</file>
+        <file alias="meteo/10d">meteo/light-rain.png</file>
         <file alias="meteo/13d">meteo/snow.png</file>
         <file alias="meteo/11d">meteo/thunderstorm.png</file>
         <file alias="meteo/01n">meteo/warm.png</file>
